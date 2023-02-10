@@ -23,8 +23,9 @@ The page is currently set so that 2 or 3 adjacent nodes are needed regardless of
 
 ## Screenshots
 ![Start Iteration](assets/images/one.png)
-![Middle Iteration](assets/images/two.png)
+![Early Iteration](assets/images/two.png)
 ![Later Iteration](assets/images/three.png)
+![Filled Iteration](assets/images/four.png)
 
 ## License
 MIT
