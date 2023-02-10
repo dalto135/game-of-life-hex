@@ -1,86 +1,18 @@
-let squares = document.querySelector("section").querySelectorAll("button");
+let nodes = document.querySelector("section").querySelectorAll("button");
 let buttons = document.querySelectorAll("button");
 
 function be() {
-    squares.forEach(square => {
+    nodes.forEach(node => {
 
-        let location = square.getAttribute("data-coord");
+        let location = node.getAttribute("data-coord");
         let locationArray = location.split(',');
         let locationNumberArray = [Number(locationArray[0]), Number(locationArray[1])]
         let adjacent = [];
 
-        // Odd
-        // 4,3  [4,2  5,2  3,3  5,3  4,4  5,4]
-        // 0,0  [0,-1  1,-1  -1,0  1,0  0,1  1,1]
-
-        // 3,3  4,2  4,4  5,3  5,2  5,4
-
-        // Even
-        // 9,2  [8,1  9,1  8,2  10,2  8,3  9,3]
-        // 0,0  [-1,-1  0,-1  -1,0  1,0  -1,1  0,1]
-
-        // 8,2  9,1  9,3  10,2  8,1  8,3
-
-        // 99,0
-
-        // 98,0  98,1
-
-        // 98,0  
-
-        // [-1,0]
-        // if (locationNumberArray[0] - 1 >= 0) {
-        //     adjacent.push((locationNumberArray[0] - 1).toString() + ',' + (locationNumberArray[1]).toString());
-        // }
-
-        // // [0,-1]
-        // if (locationNumberArray[1] - 1 >= 0 && locationNumberArray[0] <= 98) {
-        //     adjacent.push((locationNumberArray[0]).toString() + ',' + (locationNumberArray[1] - 1).toString());
-        // }
-
-        // // [0,1]
-        // if (locationNumberArray[1] + 1 <= 99 && locationNumberArray[0] <= 98) {
-        //     adjacent.push((locationNumberArray[0]).toString() + ',' + (locationNumberArray[1] + 1).toString());
-        // }
-
-        // // Even
-        // if (locationNumberArray[1] % 2 == 0) {
-        //     // [1,0]
-        //     if (locationNumberArray[0] + 1 <= 99) {
-        //         adjacent.push((locationNumberArray[0] + 1).toString() + ',' + (locationNumberArray[1]).toString());
-        //     }
-        //     if (locationNumberArray[0] - 1 >= 0) {
-        //         // [-1,-1]
-        //         if (locationNumberArray[1] - 1 >= 0) {
-        //             adjacent.push((locationNumberArray[0] - 1).toString() + ',' + (locationNumberArray[1] - 1).toString());
-        //         }
-        //         // [-1,1]
-        //         if (locationNumberArray[1] + 1 <= 99) {
-        //             adjacent.push((locationNumberArray[0] - 1).toString() + ',' + (locationNumberArray[1] + 1).toString());
-        //         }
-        //     }
-        // }
-        // // Odd
-        // else {
-        //     // [1,0]
-        //     if (locationNumberArray[0] + 1 <= 98) {
-        //         adjacent.push((locationNumberArray[0] + 1).toString() + ',' + (locationNumberArray[1]).toString());
-
-        //         // [1,-1]
-        //         if (locationNumberArray[1] - 1 >= 0) {
-        //             adjacent.push((locationNumberArray[0] + 1).toString() + ',' + (locationNumberArray[1] - 1).toString());
-        //         }
-        //         // [1,1]
-        //         if (locationNumberArray[1] + 1 <= 99) {
-        //             adjacent.push((locationNumberArray[0] + 1).toString() + ',' + (locationNumberArray[1] + 1).toString());
-        //         }
-        //     }
-        // }
-
-        let evenArray = [[-1,-1], [0,-1], [-1,0], [1,0], [-1,1], [0,1]];
-        let oddArray = [[0,-1], [1,-1], [-1,0], [1,0], [0,1], [1,1]];
-
         // Even
         if (locationNumberArray[1] % 2 == 0) {
+            let evenArray = [[-1,-1], [0,-1], [-1,0], [1,0], [-1,1], [0,1]];
+
             evenArray.forEach(coord => {
                 if (document.querySelector('[data-coord="' + (locationNumberArray[0] + coord[0]).toString() + "," + (locationNumberArray[1] + coord[1]).toString() + '"]')) {
                     adjacent.push((locationNumberArray[0] + coord[0]).toString() + "," + (locationNumberArray[1] + coord[1]).toString());
@@ -89,17 +21,14 @@ function be() {
         }
         // Odd
         else {
+            let oddArray = [[0,-1], [1,-1], [-1,0], [1,0], [0,1], [1,1]];
+
             oddArray.forEach(coord => {
                 if (document.querySelector('[data-coord="' + (locationNumberArray[0] + coord[0]).toString() + "," + (locationNumberArray[1] + coord[1]).toString() + '"]')) {
                     adjacent.push((locationNumberArray[0] + coord[0]).toString() + "," + (locationNumberArray[1] + coord[1]).toString());
                 }
             })
         }
-
-        // console.log("SQUARE");
-        // console.log(location);
-        // console.log("ADJACENT");
-        // console.log(adjacent);
 
         count = 0;
         adjacent.forEach(neighbor => {
@@ -110,62 +39,56 @@ function be() {
         })
 
         // Alive
-        if (square.getAttribute("id")) {
+        if (node.getAttribute("id")) {
             if (count == 2 || count == 3) {
-                square.setAttribute("data-next", "born");
+                node.setAttribute("data-next", "born");
             }
         }
         // Dead
         else {
             // Original game of life is (count == 2 || count == 3) when alive, (count == 3) when dead
             if (count == 2 || count == 3) {
-                square.setAttribute("data-next", "born");
+                node.setAttribute("data-next", "born");
             }
         }
-
-        // if (square == squares[101]) {
-        //     console.log("SQUARE");
-        //     console.log(location);
-        //     console.log("ADJACENT");
-        //     console.log(adjacent);
-        // }
     });
 
-    squares.forEach(square => {
-        if (square.getAttribute("data-next")) {
-            square.setAttribute("id", "alive");
-            square.removeAttribute("data-next");
+    nodes.forEach(node => {
+        if (node.getAttribute("data-next")) {
+            node.setAttribute("id", "alive");
+            node.removeAttribute("data-next");
         }
         else {
-            square.removeAttribute("id");
+            node.removeAttribute("id");
         }
     });
 }
 
-// Toggle color of grid squares
-squares.forEach(square => {
+// Toggle color of grid nodes
+nodes.forEach(node => {
     function cross() {
-        if (square.getAttribute("id")) {
-            square.removeAttribute("id");
+        if (node.getAttribute("id")) {
+            node.removeAttribute("id");
         }
         else {
-            square.setAttribute("id", "alive");
+            node.setAttribute("id", "alive");
         }
     }
 
-    square.addEventListener("click", cross);
+    node.addEventListener("click", cross);
 });
 
 // Clear the grid
 let clear = document.querySelector(".clear");
+let alives = document.querySelectorAll("#alive");
 
-function clearSquares() {
-    squares.forEach(square => {
-        square.removeAttribute("id");
+function clearnodes() {
+    alives.forEach(alive => {
+        alive.removeAttribute("id");
     })
 }
 
-clear.addEventListener("click", clearSquares);
+clear.addEventListener("click", clearnodes);
 
 // Toggle color of "Be" button
 let button = document.querySelector(".be");
