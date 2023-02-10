@@ -28,87 +28,78 @@ function be() {
         // 98,0  
 
         // [-1,0]
-        if (locationNumberArray[0] - 1 >= 0) {
-            adjacent.push((locationNumberArray[0] - 1).toString() + ',' + (locationNumberArray[1]).toString());
-        }
+        // if (locationNumberArray[0] - 1 >= 0) {
+        //     adjacent.push((locationNumberArray[0] - 1).toString() + ',' + (locationNumberArray[1]).toString());
+        // }
 
-        // [0,-1]
-        if (locationNumberArray[1] - 1 >= 0 && locationNumberArray[0] <= 98) {
-            adjacent.push((locationNumberArray[0]).toString() + ',' + (locationNumberArray[1] - 1).toString());
-        }
+        // // [0,-1]
+        // if (locationNumberArray[1] - 1 >= 0 && locationNumberArray[0] <= 98) {
+        //     adjacent.push((locationNumberArray[0]).toString() + ',' + (locationNumberArray[1] - 1).toString());
+        // }
 
-        // [0,1]
-        if (locationNumberArray[1] + 1 <= 99 && locationNumberArray[0] <= 98) {
-            adjacent.push((locationNumberArray[0]).toString() + ',' + (locationNumberArray[1] + 1).toString());
-        }
+        // // [0,1]
+        // if (locationNumberArray[1] + 1 <= 99 && locationNumberArray[0] <= 98) {
+        //     adjacent.push((locationNumberArray[0]).toString() + ',' + (locationNumberArray[1] + 1).toString());
+        // }
+
+        // // Even
+        // if (locationNumberArray[1] % 2 == 0) {
+        //     // [1,0]
+        //     if (locationNumberArray[0] + 1 <= 99) {
+        //         adjacent.push((locationNumberArray[0] + 1).toString() + ',' + (locationNumberArray[1]).toString());
+        //     }
+        //     if (locationNumberArray[0] - 1 >= 0) {
+        //         // [-1,-1]
+        //         if (locationNumberArray[1] - 1 >= 0) {
+        //             adjacent.push((locationNumberArray[0] - 1).toString() + ',' + (locationNumberArray[1] - 1).toString());
+        //         }
+        //         // [-1,1]
+        //         if (locationNumberArray[1] + 1 <= 99) {
+        //             adjacent.push((locationNumberArray[0] - 1).toString() + ',' + (locationNumberArray[1] + 1).toString());
+        //         }
+        //     }
+        // }
+        // // Odd
+        // else {
+        //     // [1,0]
+        //     if (locationNumberArray[0] + 1 <= 98) {
+        //         adjacent.push((locationNumberArray[0] + 1).toString() + ',' + (locationNumberArray[1]).toString());
+
+        //         // [1,-1]
+        //         if (locationNumberArray[1] - 1 >= 0) {
+        //             adjacent.push((locationNumberArray[0] + 1).toString() + ',' + (locationNumberArray[1] - 1).toString());
+        //         }
+        //         // [1,1]
+        //         if (locationNumberArray[1] + 1 <= 99) {
+        //             adjacent.push((locationNumberArray[0] + 1).toString() + ',' + (locationNumberArray[1] + 1).toString());
+        //         }
+        //     }
+        // }
+
+        let evenArray = [[-1,-1], [0,-1], [-1,0], [1,0], [-1,1], [0,1]];
+        let oddArray = [[0,-1], [1,-1], [-1,0], [1,0], [0,1], [1,1]];
 
         // Even
         if (locationNumberArray[1] % 2 == 0) {
-            // [1,0]
-            if (locationNumberArray[0] + 1 <= 99) {
-                adjacent.push((locationNumberArray[0] + 1).toString() + ',' + (locationNumberArray[1]).toString());
-            }
-            if (locationNumberArray[0] - 1 >= 0) {
-                // [-1,-1]
-                if (locationNumberArray[1] - 1 >= 0) {
-                    adjacent.push((locationNumberArray[0] - 1).toString() + ',' + (locationNumberArray[1] - 1).toString());
+            evenArray.forEach(coord => {
+                if (document.querySelector('[data-coord="' + (locationNumberArray[0] + coord[0]).toString() + "," + (locationNumberArray[1] + coord[1]).toString() + '"]')) {
+                    adjacent.push((locationNumberArray[0] + coord[0]).toString() + "," + (locationNumberArray[1] + coord[1]).toString());
                 }
-                // [-1,1]
-                if (locationNumberArray[1] + 1 <= 99) {
-                    adjacent.push((locationNumberArray[0] - 1).toString() + ',' + (locationNumberArray[1] + 1).toString());
-                }
-            }
+            })
         }
         // Odd
         else {
-            // [1,0]
-            if (locationNumberArray[0] + 1 <= 98) {
-                adjacent.push((locationNumberArray[0] + 1).toString() + ',' + (locationNumberArray[1]).toString());
-
-                // [1,-1]
-                if (locationNumberArray[1] - 1 >= 0) {
-                    adjacent.push((locationNumberArray[0] + 1).toString() + ',' + (locationNumberArray[1] - 1).toString());
+            oddArray.forEach(coord => {
+                if (document.querySelector('[data-coord="' + (locationNumberArray[0] + coord[0]).toString() + "," + (locationNumberArray[1] + coord[1]).toString() + '"]')) {
+                    adjacent.push((locationNumberArray[0] + coord[0]).toString() + "," + (locationNumberArray[1] + coord[1]).toString());
                 }
-                // [1,1]
-                if (locationNumberArray[1] + 1 <= 99) {
-                    adjacent.push((locationNumberArray[0] + 1).toString() + ',' + (locationNumberArray[1] + 1).toString());
-                }
-            }
+            })
         }
 
         // console.log("SQUARE");
         // console.log(location);
         // console.log("ADJACENT");
         // console.log(adjacent);
-
-        // if (locationNumberArray[0] - 1 >= 0) {
-        //     adjacent.push((locationNumberArray[0] - 1).toString() + ',' + (locationNumberArray[1]).toString());
-
-        //     if (locationNumberArray[1] - 1 >= 0) {
-        //         adjacent.push((locationNumberArray[0] - 1).toString() + ',' + (locationNumberArray[1] - 1).toString());
-        //     }
-        //     if (locationNumberArray[1] + 1 <= 99) {
-        //         adjacent.push((locationNumberArray[0] - 1).toString() + ',' + (locationNumberArray[1] + 1).toString());
-        //     }
-        // }
-
-        // if (locationNumberArray[1] - 1 >= 0) {
-        //     adjacent.push((locationNumberArray[0]).toString() + ',' + (locationNumberArray[1] - 1).toString());
-        // }
-        // if (locationNumberArray[1] + 1 <= 99) {
-        //     adjacent.push((locationNumberArray[0]).toString() + ',' + (locationNumberArray[1] + 1).toString());
-        // }
-
-        // if (locationNumberArray[0] + 1 <= 99) {
-        //     adjacent.push((locationNumberArray[0] + 1).toString() + ',' + (locationNumberArray[1]).toString());
-
-        //     if (locationNumberArray[1] - 1 >= 0) {
-        //         adjacent.push((locationNumberArray[0] + 1).toString() + ',' + (locationNumberArray[1] - 1).toString());
-        //     }
-        //     if (locationNumberArray[1] + 1 <= 99) {
-        //         adjacent.push((locationNumberArray[0] + 1).toString() + ',' + (locationNumberArray[1] + 1).toString());
-        //     }
-        // }
 
         count = 0;
         adjacent.forEach(neighbor => {
