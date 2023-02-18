@@ -11,7 +11,14 @@ function be() {
 
         // Even
         if (locationNumberArray[1] % 2 == 0) {
-            let evenArray = [[-1,-1], [0,-1], [-1,0], [1,0], [-1,1], [0,1]];
+            let evenArray = [
+                [1,0],
+                [0,1],
+                [-1,0],
+                [0,-1],
+                [-1,1],
+                [-1,-1],
+            ];
 
             evenArray.forEach(coord => {
                 if (document.querySelector('[data-coord="' + (locationNumberArray[0] + coord[0]).toString() + "," + (locationNumberArray[1] + coord[1]).toString() + '"]')) {
@@ -21,7 +28,14 @@ function be() {
         }
         // Odd
         else {
-            let oddArray = [[0,-1], [1,-1], [-1,0], [1,0], [0,1], [1,1]];
+            let oddArray = [
+                [1,0],
+                [0,1],
+                [-1,0],
+                [0,-1],
+                [1,-1],
+                [1,1]
+            ];
 
             oddArray.forEach(coord => {
                 if (document.querySelector('[data-coord="' + (locationNumberArray[0] + coord[0]).toString() + "," + (locationNumberArray[1] + coord[1]).toString() + '"]')) {
