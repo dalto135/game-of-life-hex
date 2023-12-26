@@ -1,7 +1,7 @@
 let nodes = document.querySelector("section").querySelectorAll("button");
 let buttons = document.querySelectorAll("button");
 
-function be() {
+function run() {
     nodes.forEach(node => {
 
         let location = node.getAttribute("data-coord");
@@ -80,7 +80,7 @@ function be() {
 
 // Toggle color of grid nodes
 nodes.forEach(node => {
-    function cross() {
+    function toggleColor() {
         if (node.getAttribute("id")) {
             node.removeAttribute("id");
         }
@@ -89,23 +89,23 @@ nodes.forEach(node => {
         }
     }
 
-    node.addEventListener("click", cross);
+    node.addEventListener("click", toggleColor);
 });
 
 // Clear the grid
 let clear = document.querySelector(".clear");
 let alives = document.querySelectorAll("#alive");
 
-function clearnodes() {
+function clearNodes() {
     alives.forEach(alive => {
         alive.removeAttribute("id");
     })
 }
 
-clear.addEventListener("click", clearnodes);
+clear.addEventListener("click", clearNodes);
 
-// Toggle color of "Be" button
-let button = document.querySelector(".be");
+// Toggle color of "Run" button
+let button = document.querySelector(".run");
 
 function toggle() {
     if (button.getAttribute("id")) {
@@ -123,7 +123,7 @@ let game;
 function start() {
     if (button.getAttribute("id")) {
         game = setInterval(() => {
-            be();
+            run();
         }, 10000);
     }
     else {
