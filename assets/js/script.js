@@ -44,7 +44,7 @@ function run() {
             })
         }
 
-        count = 0;
+        let count = 0;
         adjacent.forEach(neighbor => {
             let neighborButton = document.querySelector('[data-coord="' + neighbor + '"]');
             if (neighborButton.getAttribute("id")) {
